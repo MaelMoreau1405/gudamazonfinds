@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link in Bio avec Recherche</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: #007BFF;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .header a img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+        .header a img:hover {
+            transform: scale(1.2);
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .search-bar:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            max-width: 800px;
+            margin: auto;
+        }
+        .link-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .link-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+        .link-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="https://youtube.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></a>
+        <a href="https://instagram.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"></a>
+        <a href="https://twitter.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"></a>
+        <a href="https://discord.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png"></a>
+    </div>
+    
+    <h1>Mon Link in Bio</h1>
+    <input type="text" class="search-bar" placeholder="Rechercher un lien..." onkeyup="searchLinks()">
+    <div class="links" id="linkContainer">
+        <div class="link-item" data-name="YouTube" onclick="window.open('https://youtube.com', '_blank')">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"><br>YouTube
+        </div>
+        <div class="link-item" data-name="Instagram" onclick="window.open('https://instagram.com', '_blank')">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"><br>Instagram
+        </div>
+        <div class="link-item" data-name="Twitter" onclick="window.open('https://twitter.com', '_blank')">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"><br>Twitter
+        </div>
+        <div class="link-item" data-name="Discord" onclick="window.open('https://discord.com', '_blank')">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png"><br>Discord
+        </div>
+    </div>
+    
+    <script>
+        function searchLinks() {
+            let input = document.querySelector(".search-bar").value.toLowerCase();
+            let links = document.querySelectorAll(".link-item");
+            
+            links.forEach(link => {
+                let name = link.getAttribute("data-name").toLowerCase();
+                if (name.includes(input)) {
+                    link.style.display = "block";
+                } else {
+                    link.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
